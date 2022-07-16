@@ -5,21 +5,31 @@ import java.time.LocalDate;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.julio.helpdesk.domain.Chamado;
 
 public class ChamadoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private Integer id;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAbertura = LocalDate.now();
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechameto;
+	@NotNull(message = "O campo prioridade é obrigatório!")
 	private Integer prioridade;
+	@NotNull(message = "O campo status é obrigatório!")
 	private Integer status;
+	@NotNull(message = "O campo titulo é obrigatório!")
 	private String titulo;
+	@NotNull(message = "O campo observacoes é obrigatório!")
 	private String observacoes;
+	@NotNull(message = "O campo tecnico é obrigatório!")
 	private Integer tecnico;
+	@NotNull(message = "O campo cliente é obrigatório!")
 	private Integer cliente;
 	private String nomeTecnico;
 	private String nomeCliente;
