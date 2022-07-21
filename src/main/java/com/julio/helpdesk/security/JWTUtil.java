@@ -11,6 +11,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JWTUtil {
+	
 	@Value("${jwt.expiration}")
 	private Long expiration;
 	
@@ -25,17 +26,16 @@ public class JWTUtil {
 				.compact();
 	}
 
-	public boolean toKenValido(String token) {
+	public boolean tokenValido(String token) {
 		Claims claims = getClaims(token);
 		if(claims != null) {
 			String username = claims.getSubject();
 			Date expirationDate = claims.getExpiration();
 			Date now = new Date(System.currentTimeMillis());
 			
-			if(username != null && expirationDate != null && now.before(expirationDate)){
+			if(username != null && expirationDate != null && now.before(expirationDate)) {
 				return true;
 			}
-		
 		}
 		return false;
 	}
@@ -43,7 +43,7 @@ public class JWTUtil {
 	private Claims getClaims(String token) {
 		try {
 			return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
-		} catch(Exception e){
+		} catch (Exception e) {
 			return null;
 		}
 	}
@@ -56,3 +56,4 @@ public class JWTUtil {
 		return null;
 	}
 }
+
