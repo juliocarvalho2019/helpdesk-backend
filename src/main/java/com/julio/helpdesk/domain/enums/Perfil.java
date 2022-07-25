@@ -1,7 +1,7 @@
 package com.julio.helpdesk.domain.enums;
 
 public enum Perfil {
-	
+
 	ADMIN(0, "ROLE_ADMIN"), CLIENTE(1, "ROLE_CLIENTE"), TECNICO(2, "ROLE_TECNICO");
 	
 	private Integer codigo;
@@ -12,12 +12,12 @@ public enum Perfil {
 		this.descricao = descricao;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public String getDescricao() {
+		return descricao;
 	}
 	
 	public static Perfil toEnum(Integer cod) {
@@ -30,8 +30,8 @@ public enum Perfil {
 				return x;
 			}
 		}
-		throw new IllegalArgumentException("Pefil inválido");
+		
+		throw new IllegalArgumentException("Perfil inválido");
 	}
-	
-
 }
+

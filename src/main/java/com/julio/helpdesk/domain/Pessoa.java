@@ -3,7 +3,6 @@ package com.julio.helpdesk.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,8 +19,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.julio.helpdesk.domain.enums.Perfil;
 
 @Entity
-public abstract class Pessoa implements Serializable{
-	
+public abstract class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -29,7 +27,6 @@ public abstract class Pessoa implements Serializable{
 	protected Integer id;
 	protected String nome;
 	
-	//@CPF
 	@Column(unique = true)
 	protected String cpf;
 	
@@ -43,10 +40,10 @@ public abstract class Pessoa implements Serializable{
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
-	
+
 	public Pessoa() {
 		super();
-		addPerfis(Perfil.CLIENTE);
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Pessoa(Integer id, String nome, String cpf, String email, String senha) {
@@ -56,7 +53,7 @@ public abstract class Pessoa implements Serializable{
 		this.cpf = cpf;
 		this.email = email;
 		this.senha = senha;
-		addPerfis(Perfil.CLIENTE);
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -103,7 +100,7 @@ public abstract class Pessoa implements Serializable{
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 
-	public void addPerfis(Perfil perfil) {
+	public void addPerfil(Perfil perfil) {
 		this.perfis.add(perfil.getCodigo());
 	}
 
@@ -117,7 +114,11 @@ public abstract class Pessoa implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cpf, id);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -129,11 +130,18 @@ public abstract class Pessoa implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
-	
-	
-	
-	
 
 }
+

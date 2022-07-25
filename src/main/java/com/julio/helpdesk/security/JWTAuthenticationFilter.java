@@ -63,7 +63,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	}
 
 	private CharSequence json() {
-		
 		long date = new Date().getTime();
 		return "{"
 				+ "\"timestamp\": " + date + ", " 

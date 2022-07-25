@@ -1,7 +1,8 @@
 package com.julio.helpdesk.domain.enums;
 
+
 public enum Prioridade {
-	
+
 	BAIXA(0, "BAIXA"), MEDIA(1, "MEDIA"), ALTA(2, "ALTA");
 	
 	private Integer codigo;
@@ -12,12 +13,12 @@ public enum Prioridade {
 		this.descricao = descricao;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public String getDescricao() {
+		return descricao;
 	}
 	
 	public static Prioridade toEnum(Integer cod) {
@@ -30,8 +31,8 @@ public enum Prioridade {
 				return x;
 			}
 		}
-		throw new IllegalArgumentException("Status inválido");
+		
+		throw new IllegalArgumentException("Prioridade inválida");
 	}
-	
-
 }
+

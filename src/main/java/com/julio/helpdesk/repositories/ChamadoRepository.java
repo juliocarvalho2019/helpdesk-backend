@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.julio.helpdesk.domain.Chamado;
 
-
-public interface ChamadoRepository extends JpaRepository<Chamado, Integer>{
+public interface ChamadoRepository extends JpaRepository<Chamado, Integer> {
 
 }

@@ -1,7 +1,7 @@
 package com.julio.helpdesk.domain.enums;
 
 public enum Status {
-	
+
 	ABERTO(0, "ABERTO"), ANDAMENTO(1, "ANDAMENTO"), ENCERRADO(2, "ENCERRADO");
 	
 	private Integer codigo;
@@ -12,12 +12,12 @@ public enum Status {
 		this.descricao = descricao;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public String getDescricao() {
+		return descricao;
 	}
 	
 	public static Status toEnum(Integer cod) {
@@ -30,8 +30,7 @@ public enum Status {
 				return x;
 			}
 		}
-		throw new IllegalArgumentException("Prioridade inválido");
+		
+		throw new IllegalArgumentException("Status inválido");
 	}
-	
-
 }
